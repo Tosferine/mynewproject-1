@@ -124,18 +124,19 @@ function validateForm() {
         } else 
         // "validation successful";
                { 
-                id = 'id' + performance.now()
-                dup = 'id' + performance.now()
+                // id = 'id' + performance.now()
+                // dup = 'id' + performance.now()
 
-                console.log(id)
-                console.log(id.replace('.','')) // sexy id
-                console.log(id === dup) // false!
+                // console.log(id)
+                // console.log(id.replace('.','')) // sexy id
+                // console.log(id === dup) // false!
         
                 // row++;
-
+                event.preventDefault();
                 taskManager.addTask(a, b, c, d, e);
 
                    // Render the tasks
+                taskManager.save();
                 taskManager.render();
 
                 a.value = '';
@@ -152,3 +153,30 @@ function validateForm() {
             }
     
           }
+          const taskList = document.querySelector('#task-list');
+          taskList.addEventListener("click", (event) => {
+          if (event.target.classList.contains("done-button")) {
+                // Get the correct parent Task, yours might be slightly different
+                // Use console.log(event.target.parentElement) to see
+                const parentTask =
+                  event.target.parentElement.parentElement.parentElement.parentElement;
+                // Get the taskId of the parent Task and turn it into a number.
+                const taskId = Number(parentTask.dataset.taskId);
+              
+                const task = taskManager.getTaskById(taskId);
+                // Update the task status to 'DONE'
+                task.status = "Done";
+                taskManager.save();
+                // Render the tasks
+                taskManager.render();
+
+          }  if(event.target.classList.contains("delete-button")){
+                const parentTask =
+                event.target.parentElement.parentElement.parentElement.parentElement;
+                const taskId = Number(parentTask.dataset.taskId);
+                const task = taskManager.deleteTask(taskId);
+                taskManager.save();
+                taskManager.render();
+          }
+        });
+     

@@ -1,4 +1,4 @@
-const createTaskHtml = (id,name ,description, assignedTo, status, dueDate ) => {
+const createTaskHtml = (id,name ,description, status, assignedTo, dueDate ) => {
   const html = `<li class="card" data-task-id="${id}" style="min-width: 20vw">
   <div class="card-body">
     <h5 class="card-title">Task Name : ${name}</h5>
@@ -34,7 +34,7 @@ class TaskManager {
     this.currentId = currentId;
   }
 
-  addTask(name, description, assignedTo, status, dueDate) {
+  addTask(name, description, status,assignedTo,  dueDate) {
     // Create a task object that we will push to the list of tasks
 
     const task = {
@@ -42,8 +42,9 @@ class TaskManager {
       id: this.currentId++,
       name: name,
       description: description,
-      assignedTo: assignedTo,
       status: status,
+      assignedTo: assignedTo,
+  
       dueDate: dueDate,
       
     };
@@ -136,5 +137,22 @@ class TaskManager {
       this.currentId = Number(currentId);
     }
   }
+  deleteTask(taskId){
+   let newTasks = [];
+    for (let i = 0; i < this.tasks.length; i++) {
+      // Get the current task in the loop
+      const task = this.tasks[i];
+      if (task.id !== taskId) {
+        // Push the task to the newTasks array
+        newTasks.push(task);
+        
+      }
+
+  }
+  this.tasks = newTasks;
 }
 
+
+}
+miStorage = window.localStorage;
+console.log(miStorage);
