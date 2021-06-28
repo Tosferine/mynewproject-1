@@ -119,7 +119,7 @@ function validateForm() {
                   document.getElementById('tDate').style.border ="3px solid red";  
                   document.getElementById('date-error').innerHTML = "Due Date cannot be in the past";
 
-                  console.log("S"); 
+                  
                   return false;   
         } else 
         // "validation successful";
@@ -144,16 +144,16 @@ function validateForm() {
                 d.value = '';
                 e.value = '';
                 
-                document.getElementById("tId").value = "";
-                document.getElementById("tDesc").value = "";
-                document.getElementById("tStatus").value = "1";
-                document.getElementById("tAssTo").value = "";
-                document.getElementById("tDate").value = "";
+                 document.getElementById("tId").value = "";
+                 document.getElementById("tDesc").value = "";
+                 document.getElementById("tStatus").value = "1";
+                 document.getElementById("tAssTo").value = "";
+                 document.getElementById("tDate").value = "";
         
             }
     
           }
-          const taskList = document.querySelector('#task-list');
+          const taskList = document.querySelector("#task-list");
           taskList.addEventListener("click", (event) => {
           if (event.target.classList.contains("done-button")) {
                 // Get the correct parent Task, yours might be slightly different

@@ -1,15 +1,16 @@
 const createTaskHtml = (id,name ,description, status, assignedTo, dueDate ) => {
-  const html = `<li class="card" data-task-id="${id}" style="min-width: 20vw">
+  const html = ` <section data-task-id="${id}"class="border border-secondary m-3 p-2" >
+
   <div class="card-body">
     <h5 class="card-title">Task Name : ${name}</h5>
     <p class="card-text"> Task Description : 
       ${description}
     </p>
-    <p class="card-text"> Assigned To :${status}</p>
+    <p class="card-text"> Assigned To :${assignedTo}</p>
     <p class="card-text"> Due Date : ${dueDate}</p>
     <div class="card-footer row">
       <div class="col-6">
-        <p class="card-text"><b>Current Status : ${assignedTo}</b></p>
+        <p class="card-text"><b>Current Status : ${status}</b></p>
       </div>
       <div class="col-3">
         <button class="btn btn-outline-success done-button">
@@ -23,7 +24,7 @@ const createTaskHtml = (id,name ,description, status, assignedTo, dueDate ) => {
       </div>
     </div>
   </div>
-</li>`;
+</section>`;
   return html;
 };
 
@@ -44,7 +45,6 @@ class TaskManager {
       description: description,
       status: status,
       assignedTo: assignedTo,
-  
       dueDate: dueDate,
       
     };
@@ -85,8 +85,8 @@ class TaskManager {
         task.id,
         task.name,
         task.description,
-        task.assignedTo,
         task.status,
+        task.assignedTo,
         formattedDate
         
 
